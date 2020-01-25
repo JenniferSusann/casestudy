@@ -1,0 +1,31 @@
+body {
+    background-image: url('bilder/notebook.jpg');
+    background-color: rgb(95, 104, 101);
+}
+
+@font-face {
+    font-family: soulofyou;
+    src: url(SoulOfYou.ttf);
+}
+
+.fulldiary {
+    font-family: soulofyou;
+    text-align: center;
+    font-size: xx-large;
+}
+
+.willkommen{
+    color: blanchedalmond;
+}
+.first_text {
+    color: brown;
+    margin-bottom: 80px;
+}
+   
+a:visited {
+    color: brown;
+}
+a:hover {
+    color: rgb(174, 162, 240);
+}
+
