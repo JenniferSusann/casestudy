@@ -1,32 +1,45 @@
 body {
-    background-image: url('bilder/notebook.jpg');
+    background-image: url('bilder/cork-board.png');
     background-color: rgb(95, 104, 101);
+    background-repeat: repeat;
+    
 }
 
 @font-face {
-    font-family: soulofyou;
-    src: url(SoulOfYou.ttf);
+    font-family: baroneystextures;
+    src: url(BaroneysTextured.ttf);
 }
 
 .fulldiary {
-    font-family: soulofyou;
+    font-family: baroneystextures;
     text-align: center;
     font-size: xx-large;
 }
 
 .willkommen{
-    color: blanchedalmond;
+    color: rgb(63, 41, 7);
 }
 .first_text {
-    color: brown;
-    margin-bottom: 80px;
+    color: rgb(61, 56, 52);
+    padding-right: 180px;
+
 }
    
 a:visited {
-    color: brown;
+    color: rgb(61, 56, 52;
 }
 a:hover {
     color: rgb(174, 162, 240);
 }
 
+@media screen and (min.width: 601px){
+    div.fulldiary{
+        font-size: 80px;
+    }
+}
+@media screen and (mas-width: 600px){
+    div.fulldiary{
+        font-size: 30px;
+    }
+}
 
