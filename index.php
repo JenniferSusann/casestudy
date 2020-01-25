@@ -29,13 +29,14 @@
             <p><h2>Anmelden</h2></p>
             <a href="registrieren.php">Registrieren
             </a>      
-                <br>
+        <form action="/login.php" method="POST">    
+            <br>
                 <input type="text" name="benutzername" value="" placeholder="Benutzername">
                 <br>
                 <input type="text" name="passwort" placeholder="Passwort">
                 <br>
                 <input type="submit" value="Einloggen">
-            
+</form>   
         </div>
 
        

@@ -13,7 +13,7 @@ body {
 .fulldiary {
     font-family: baroneystextures;
     text-align: center;
-    font-size: xx-large;
+    font-size: 13mm;
 }
 
 .willkommen{
@@ -21,8 +21,7 @@ body {
 }
 .first_text {
     color: rgb(61, 56, 52);
-    padding-right: 180px;
-
+    
 }
    
 a:visited {
@@ -30,16 +29,5 @@ a:visited {
 }
 a:hover {
     color: rgb(174, 162, 240);
-}
-
-@media screen and (min.width: 601px){
-    div.fulldiary{
-        font-size: 80px;
-    }
-}
-@media screen and (mas-width: 600px){
-    div.fulldiary{
-        font-size: 30px;
-    }
 }
 
