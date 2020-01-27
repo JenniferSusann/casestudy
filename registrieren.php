@@ -13,16 +13,18 @@
     <body>
     
     <div class="reglink">
-      
-        <input type="text" name="Vorname" value="" placeholder="Vorname">
-        <br>
-        <input type="text" name="Nachname" value="" placeholder="Nachname">
-        <br>
-        <input  type="email" name="email" value="" placeholder="E-Mail">
-        <br>
-        <input type="password" name="password" placeholder="Passwort">
-        <br>
+        <form action="registration_action.php" method="post">
+            <input type="text" name="nachname" value="" placeholder="Nachname">
+            <br>
+            <input type="text" name="vorname" value="" placeholder="Vorname">
+            <br>
+            <input  type="email" name="email" value="" placeholder="E-Mail">
+            <br>
+            <input type="password" name="password" placeholder="Passwort">
+            <br>
+            <input type="password" name="password_confirm" placeholder="Passwort bestätigen">
+            <p><input type="submit" value="Registrieren"/></p>
 
-</div>
+    </div>
     </body>
 </html>

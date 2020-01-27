@@ -14,41 +14,33 @@
     <div class="fulldiary">
         <div class="diary-body">
         
-        <div class="willkommen">
-        <p><h1>
-        Willkommen zu deinem online Tagebuch<br></h1>
-        </div>
+            <div class="willkommen">
+            <h1>Willkommen zu deinem online Tagebuch<br></h1>
+            </div>
         
-        <div class="first_text">   
-        <p>
-        Hier kannst du dir dein eigenes online Tagebuch erstellen.<br>
-        Wir wünsche dir viel spass beim erstellen von Einträgen.     
-        </p>
-        </div> 
-        <div class="loginlink">  
-            <p><h2>Anmelden</h2></p>
-            <a href="registrieren.php">Registrieren
-            </a>      
-        <form action="/login.php" method="POST">    
-            <br>
-                <input type="text" name="benutzername" value="" placeholder="Benutzername">
-                <br>
-                <input type="text" name="passwort" placeholder="Passwort">
-                <br>
-                <input type="submit" value="Einloggen">
-</form>   
-        </div>
+            <div class="first_text">   
+                <p>Hier kannst du dir dein eigenes online Tagebuch erstellen.<br>
+                Wir wünsche dir viel spass beim erstellen von Einträgen.</p>
+            </div> 
+            <div class="loginlink">  
+                <p><h2>Anmelden</h2></p>      
+                <form action="login.php" method="POST">    
+                        <input type="text" name="benutzername" value="" placeholder="Benutzername">
+                        <br>
+                        <input type="password" name="passwort" placeholder="Passwort">
+                        <br>
+                        <input type="submit" value="Einloggen">
+                </form>
+                <br><br>   
+                <a href="registrieren.php">Registrieren</a>
+            </div>
 
-       
-             
+            <nav class= "menu">
+                <ul>
+                    <li>hallo velo</li>
+                </ul> 
 
-
-        <nav class= "menu">
-            <ul>
-                <li>hallo velo</li>
-            </ul> 
-
-        </nav>
+            </nav>
 
         </div>
     </div>

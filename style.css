@@ -1,5 +1,5 @@
 body {
-    background-image: url('bilder/cork-board.png');
+    background-image: url('Bilder/cork-board.png');
     background-color: rgb(95, 104, 101);
     background-repeat: repeat;
     
@@ -13,7 +13,7 @@ body {
 .fulldiary {
     font-family: baroneystextures;
     text-align: center;
-    font-size: 13mm;
+    font-size: 3em;
 }
 
 .willkommen{
@@ -21,13 +21,16 @@ body {
 }
 .first_text {
     color: rgb(61, 56, 52);
-    
 }
    
 a:visited {
-    color: rgb(61, 56, 52;
+    color: rgb(61, 56, 52);
 }
 a:hover {
     color: rgb(174, 162, 240);
+}
+
+.error{
+    color:red;
 }
 

@@ -6,11 +6,21 @@
         <link rel="stylesheet" href="style.css">
         <link rel="shortcut icon" href="journal.jpg">
         <title>Tagebuch</title>
-
-
     </head>
 
     <body>
-
+        <?php
+        $BN = $_POST['benutzername'];
+        $PW = $_POST['passwort'];
+            if ($BN != "" && $PW != "") {               
+                echo "<h1>Sie wurden erfolgreich eingeloggt!</h1>";
+                echo "BN:" .$_POST['benutzername'];
+                echo "<br>";
+                echo "PW:" .$_POST['passwort'];
+            }
+            else {
+                echo '<h1 class="error">Bitte Benutername und Passwort ausfüllen!</h1>';
+            }
+        ?>
 
     </body>
