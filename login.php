@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width", inital-scale=1.0">
         <link rel="stylesheet" href="style.css">
-        <link rel="shortcut icon" href="journal.jpg">
-        <title>Tagebuch</title>
+        <link rel="shortcut icon" href="Bilder\journal.jpg">
+        <title>Dein Tagebuch</title>
     </head>
 
     <body>
@@ -19,8 +19,7 @@
                 echo "PW:" .$_POST['passwort'];
             }
             else {
-                echo '<h1 class="error">Bitte Benutername und Passwort ausfüllen!</h1>';
+                echo '<h1 class="error">Bitte Benutername und Passwort erneut ausfüllen!</h1>';
             }
         ?>
-
     </body>
