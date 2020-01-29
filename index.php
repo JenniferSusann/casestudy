@@ -1,10 +1,24 @@
+<?php
+if ($_GET['error'] == TRUE) 
+{
+    $error = '<h1 class="error">Bitte Benutername und Passwort erneut ausfüllen!</h1>';
+}
+
+if ($_GET['zugang_falsch'] == TRUE) 
+{
+    $error = '<h1 class="error">Benutername und Passwort stimmen nicht überrein!</h1>';
+}
+    
+?>
+
+
 <!DOCTYPE html>
 <html lang="de">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width", inital-scale=1.0">
         <link rel="stylesheet" href="style.css">
-        <link rel="shortcut icon" href="Bilder\journal.jpg">
+        <link rel="shortcut icon" href="bilder\favicon.ico">
         <title>Tagebuch</title>
 
 
@@ -23,7 +37,8 @@
                     Wir wünsche dir viel spass beim erstellen von Einträgen.</p>
                 </div> 
                 <div class="loginlink">  
-                    <p><h2>Anmelden</h2>    
+                    <p><h2>Anmelden</h2>  
+                    <div class="error"><?=$error?></div>  
                     <form action="login.php" method="POST">    
                             <input type="text" name="benutzername" value="" placeholder="Benutzername">
                             <br>

@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width", inital-scale=1.0">
         <link rel="stylesheet" href="style.css">
-        <link rel="shortcut icon" href="Bilder\journal.jpg">
+        <link rel="shortcut icon" href="bilder\favicon.ico">
         <title>Dein Tagebuch</title>
     </head>
 
@@ -19,7 +19,8 @@
                 echo "PW:" .$_POST['passwort'];
             }
             else {
-                echo '<h1 class="error">Bitte Benutername und Passwort erneut ausfüllen!</h1>';
+                //keine Ausgaben vorher!
+                header('Location: ./index.php?error=true');
             }
         ?>
     </body>

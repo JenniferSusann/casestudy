@@ -1,8 +1,7 @@
 body {
-    background-image: url('Bilder/cork-board.png');
-    background-color: rgb(95, 104, 101);
-    background-repeat: repeat;
-    
+    background-image: url('bilder/cork-board.png');
+    /* background-color: rgb(95, 104, 101); */
+    background-repeat: repeat;    
 }
 
 @font-face {
@@ -32,5 +31,8 @@ a:hover {
 
 .error{
     color:red;
+    font-size: 0.7em /*!important*/;
+    font-family: Arial;
+
 }
 
