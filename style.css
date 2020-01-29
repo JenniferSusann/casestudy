@@ -21,7 +21,12 @@ body {
 .first_text {
     color: rgb(61, 56, 52);
 }
-   
+  
+.input_form{
+    
+    text-align: center;
+    font-size: 1.5em;
+}
 a:visited {
     color: rgb(61, 56, 52);
 }

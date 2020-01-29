@@ -5,14 +5,11 @@
         <meta name="viewport" content="width=device-width", inital-scale=1.0">
         <link rel="stylesheet" href="style.css">
         <link rel="shortcut icon" href="bilder\favicon.ico">
-        <title>Willkommen</title>
+        <title>Dein Tagebuch</title>
     </head>
 
     <body>
-        <?php
-            header ( 'Location: ./login.php' );
+        <?php     
+            echo "<h1>Sie wurden erfolgreich eingeloggt!</h1>";           
         ?>
     </body>
-</html>
-
-

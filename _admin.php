@@ -1,4 +1,5 @@
 <?php
+//entfernen aus casestudy Projekt?
 try {
     $pdo = new PDO('mysql:dbname=webtech1;host=localhost',
     'webtech1', 'webtech1');
