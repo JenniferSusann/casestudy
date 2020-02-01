@@ -9,7 +9,21 @@
     </head>
 
     <body>
+        <div class="fulldiary">
+            <h2>Tagebuch Übersicht</h2>
+            <div class="diary-body">
+            <div class="input_form">
+            
+                <form action="diary_overview.php" method="POST">
+                   
+                    <input type="button" name="logout" value="Abmelden" onclick="window.location.href='diary_overview_action.php'">
+                    <input type="button" name="new_diary" value="Neuer Beitrag erstellen" onclick="window.location.href='diary_create.php'">
+                </form>
+                <?php check_login(); ?>
+            </div>  
+            </div>
+        </div>
         <?php     
-            echo "<h1>Sie wurden erfolgreich eingeloggt!</h1>";           
+                       
         ?>
     </body>

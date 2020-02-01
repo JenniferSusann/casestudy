@@ -15,7 +15,7 @@
         //verbindugsaufbau
         try {
             $conn = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpw);
-        } catch (PDOException $e){
+        } catch (PDOException $e){ 
             echo 'Verbindung fehlgeschlagen: ' .$e->get_messagge();
          }
         

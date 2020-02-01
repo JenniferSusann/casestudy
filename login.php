@@ -1,13 +1,18 @@
-<?php
+<?php 
 if ($_GET['error'] == TRUE) 
 {
-    $error = '<h1 class="error">Bitte Benutername und Passwort erneut ausfüllen!</h1>';
+    $error_text = '<h1 class="error">Bitte Benutername und Passwort erneut ausfüllen!</h1>';
+    $error = false; //richtig? funk unset($error)
 }
 
-if ($_GET['zugang_falsch'] == TRUE) 
+elseif ($_GET['zugang_falsch'] == TRUE) 
 {
-    $error = '<h1 class="error">Bitte Benutername und Passwort prüfen!</h1>';
-}  
+    $error_text = '<h1 class="error">Bitte Benutername und Passwort prüfen!</h1>';
+}
+
+else {
+    
+}
 ?>
 
 
@@ -35,7 +40,8 @@ if ($_GET['zugang_falsch'] == TRUE)
                 </div> 
                 <div>  
                     <h2>Anmelden</h2>  
-                    <div class="error"><?=$error?></div>  
+                    <div class="error"><?=$error_text?></div>
+                    <div class="error"><?=$test?></div>
                     <div class="input_form">
                     <form action="login_action.php" method="POST">
                             <input type="text" name="benutzername" value="" placeholder="Benutzername">
