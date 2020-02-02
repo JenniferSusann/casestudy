@@ -8,6 +8,8 @@
     </head>
     <body>
         <?php
+            //Include anderer Files
+            require_once('./db/db_connection.php');
 
                  //daten einfügen
                 $vorname = $_POST['vorname'];
@@ -19,17 +21,7 @@
                 if ($vorname != "" && $nachname != "" && $bn_name != "" && $bn_pw != "" && $bn_pw_confirm != "" && $email != "") {  
                     if ($pw == $pw_confirm) {
 
-                        $dbhost = "127.0.0.1";
-                        $dbname = "casestudy1";
-                        $dbuser = "casestudy";
-                        $dbpw = "casestudy";
-
-                        //verbindugsaufbau
-                        try {
-                            $conn = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpw);
-                        } catch (PDOException $e){
-                            echo 'Verbindung fehlgeschlagen: ' .$e->get_messagge();
-                        }
+                        db_connect();
 
                         $dbtabelle = "benutzer";
                         $stmt = $conn->prepare("INSERT INTO $dbtabelle (vorname, nachname, bn_name, bn_pw, email)
@@ -41,6 +33,7 @@
                         $stmt->bindParam(':email', $email);
 
                         $stmt->execute();
+                        db_close();
 
                         ?><script>
                             alert("Eintrag war erfolgreich!");
@@ -61,27 +54,6 @@
                             window.location = 'register.php';
                         </script><?php
                 }
-        /*
-        $PW = $_POST['password_confirm'];
-        if($PW != "") {
-        ?>
-            
-            <script>
-                alert("Eintrag war erfolgreich!");
-                window.location = 'login.php';
-            </script>
-        <?php
-        }
-        else {       
-        ?>
-            <script>  
-                alert("Fehler beim speichern!");
-                window.location = 'register.php';
-            </script>      
-        <?php   
-        }
-
-        */
         ?>
     </body>
 </html>

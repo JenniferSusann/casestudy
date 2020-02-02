@@ -9,7 +9,20 @@
     </head>
 
     <body>
-        <?php     
-                       
+        <?php
+            if (isset($_POST['new_diary'])) {
+                header ( 'Location: ./diary_create.php');
+            }
+            elseif (isset($_POST['logout'])) {
+                $_SESSION['session_on'] = false;
+                session_destroy();
+                ?><script>
+                    alert("Sie wurden erfolgreich abgemeldet");
+                    window.location = 'login.php';
+                </script><?php
+            }
+            else {
+                header ( 'Location: ./diary_overview.php');
+            }                      
         ?>
     </body>

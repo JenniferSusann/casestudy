@@ -1,3 +1,19 @@
+<?php 
+
+session_start();
+
+if (isset($_SESSION['session_on'])) {    
+}
+
+else {
+    ?><script>
+        alert("Ihre Sitzung ist abgelaufen");
+        window.location = 'login.php';
+    </script><?php
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="de">
     <head>
@@ -14,16 +30,15 @@
             <div class="diary-body">
             <div class="input_form">
             
-                <form action="diary_overview.php" method="POST">
+                <form action="diary_overview_action.php" method="POST">
                    
-                    <input type="button" name="logout" value="Abmelden" onclick="window.location.href='diary_overview_action.php'">
-                    <input type="button" name="new_diary" value="Neuer Beitrag erstellen" onclick="window.location.href='diary_create.php'">
+                    <input type="submit" name="logout" value="Abmelden">
+                    <input type="submit" name="new_diary" value="Neuer Beitrag erstellen">
                 </form>
-                <?php check_login(); ?>
             </div>  
             </div>
         </div>
         <?php     
-                       
+                    
         ?>
     </body>

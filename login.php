@@ -1,20 +1,18 @@
 <?php 
-if ($_GET['error'] == TRUE) 
+
+if ($_GET['error_login'] == TRUE) 
 {
     $error_text = '<h1 class="error">Bitte Benutername und Passwort erneut ausfüllen!</h1>';
-    $error = false; //richtig? funk unset($error)
+    unset ($error_login);
 }
 
 elseif ($_GET['zugang_falsch'] == TRUE) 
 {
+    unset ($zugang_falsch);
     $error_text = '<h1 class="error">Bitte Benutername und Passwort prüfen!</h1>';
 }
-
-else {
-    
-}
+else {}
 ?>
-
 
 <!DOCTYPE html>
 <html lang="de">
@@ -41,7 +39,6 @@ else {
                 <div>  
                     <h2>Anmelden</h2>  
                     <div class="error"><?=$error_text?></div>
-                    <div class="error"><?=$test?></div>
                     <div class="input_form">
                     <form action="login_action.php" method="POST">
                             <input type="text" name="benutzername" value="" placeholder="Benutzername">
@@ -56,8 +53,6 @@ else {
                 <br><br>   
                     <a href="register.php">Registrieren</a>
             </div>
-            
-            
             
             <!--Menue für ?-->
             <!--
