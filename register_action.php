@@ -4,7 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="stylesheet" href="style.css">
         <link rel="shortcut icon" href="bilder\favicon.ico">
-        <title>Formulare</title>
+        <title></title>
     </head>
     <body>
         <?php
@@ -18,10 +18,13 @@
                 $bn_pw = $_POST['password'];
                 $bn_pw_confirm = $_POST['password_confirm'];
                 $email = strtolower($_POST['email']);
-                if ($vorname != "" && $nachname != "" && $bn_name != "" && $bn_pw != "" && $bn_pw_confirm != "" && $email != "") {  
-                    if ($pw == $pw_confirm) {
+                //if ($vorname != "" && $nachname != "" && $bn_name != "" && $bn_pw != "" && $bn_pw_confirm != "" && $email != "") {  
+                if (!empty($vorname) && !empty($nachname) && !empty($bn_name) && !empty($bn_pw) && !empty($bn_pw_confirm)) {
+                    if ($bn_pw == $bn_pw_confirm) {
 
                         db_connect();
+
+                        //prüfen ob User bereits besteht
 
                         $dbtabelle = "benutzer";
                         $stmt = $conn->prepare("INSERT INTO $dbtabelle (vorname, nachname, bn_name, bn_pw, email)
@@ -39,20 +42,13 @@
                             alert("Eintrag war erfolgreich!");
                             window.location = 'login.php';
                         </script><?php
-
                     }
                     else {
-                        ?><script>
-                            alert("Eintrag war erfolgreich!");
-                            window.location = 'register.php';
-                        </script><?php
+                        header ('Location: ./register.php?error_pw_same=true'); //nicht alle Felder ausgefuellt
                     }
                 }
                 else {
-                        ?><script>
-                            alert("Eintrag war erfolgreich!");
-                            window.location = 'register.php';
-                        </script><?php
+                    header ('Location: ./register.php?error_blank=true'); //nicht alle Felder ausgefuellt
                 }
         ?>
     </body>

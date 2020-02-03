@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width", inital-scale=1.0">
         <link rel="stylesheet" href="style.css">
         <link rel="shortcut icon" href="bilder\favicon.ico">
-        <title>Dein Tagebuch</title>
+        <title></title>
     </head>
 
     <body>
@@ -16,14 +16,13 @@
         $BN = strtolower($_POST['benutzername']);
         $PW = $_POST['passwort'];
 
-        if ($BN != "" && $PW != "") { //BN und PW ausgefuellt
-            db_connect();
-                        
-            $sql = "Select * from benutzer where bn_name = '$BN'";
-            foreach($_SESSION['conn']->query($sql) as $row) {
-                $bn_name = $row["bn_name"];
-                $bn_pw = $row["bn_pw"];
-            }
+        if (!empty($BN) || !empty($PW)) { //BN und PW ausgefuellt
+            db_connect();            
+                $sql = "Select * from benutzer where bn_name = '$BN'";
+                foreach($_SESSION['conn']->query($sql) as $row) {
+                    $bn_name = $row["bn_name"];
+                    $bn_pw = $row["bn_pw"];
+                }
 
             if ($BN == $bn_name && $PW == $bn_pw) { //BN und PW stimmen ueberein
                     $_SESSION['session_on'] = "TRUE";
@@ -35,7 +34,7 @@
         }
 
         else {
-            header ('Location: ./login.php?error_login=true'); //BN oder PW nicht ausgefüllt
+            header ('Location: ./login.php?error_blank=true'); //BN oder PW nicht ausgefüllt
         }
         
         ?>

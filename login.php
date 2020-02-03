@@ -1,15 +1,14 @@
 <?php 
-
-if ($_GET['error_login'] == TRUE) 
+if ($_GET['error_blank'] == TRUE) //nicht alle Felder ausgefuellt
 {
     $error_text = '<h1 class="error">Bitte Benutername und Passwort erneut ausfüllen!</h1>';
     unset ($error_login);
 }
 
-elseif ($_GET['zugang_falsch'] == TRUE) 
+elseif ($_GET['zugang_falsch'] == TRUE) //Logindaten falsch
 {
-    unset ($zugang_falsch);
     $error_text = '<h1 class="error">Bitte Benutername und Passwort prüfen!</h1>';
+    unset ($zugang_falsch);
 }
 else {}
 ?>
@@ -27,18 +26,15 @@ else {}
     <body>
         <div class="fulldiary">
             <div class="diary-body">
-            
                 <div class="willkommen">
-                <h1>Willkommen zu deinem online Tagebuch<br></h1>
+                    <h1>Willkommen zu deinem online Tagebuch<br></h1>
                 </div>
-            
                 <div class="first_text">   
-                    <p>Hier kannst du dir dein eigenes online Tagebuch erstellen.<br>
-                    Wir wünsche dir viel spass beim erstellen von Einträgen.</p>
+                    <p>Hier kannst du dir dein eigenes online Tagebuch erstellen.<br>Wir wünsche dir viel spass beim erstellen von Einträgen.</p>
                 </div> 
                 <div>  
                     <h2>Anmelden</h2>  
-                    <div class="error"><?=$error_text?></div>
+                    <div class="error"><?=$error_text?></div> <!--Kurzform von php echo $var-->
                     <div class="input_form">
                     <form action="login_action.php" method="POST">
                             <input type="text" name="benutzername" value="" placeholder="Benutzername">
