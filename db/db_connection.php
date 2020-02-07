@@ -20,6 +20,7 @@
                 }
             }
 
+                
             function db_close() {        
                 //verbindung schliessen
                 $_SESSION['conn'] = null;

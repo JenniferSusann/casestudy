@@ -2,19 +2,15 @@
 
 session_start();
 
-if (isset($_SESSION['session_on'])) {  
-
+if ($_SESSION['session_on'] == 'TRUE') { 
 }
 
-else {
-   /* 
+else {   
     ?><script>
         alert("Ihre Sitzung ist abgelaufen");
         window.location = 'login.php';
-    </script><?php
-    */
+    </script><?php 
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +28,6 @@ else {
             <h2>Tagebuch Übersicht</h2>
             <div class="diary-body">
             <div class="input_form">
-            
                 <form action="diary_overview_action.php" method="POST">
                    
                     <input type="submit" name="logout" value="Abmelden">

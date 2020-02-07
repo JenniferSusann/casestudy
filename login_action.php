@@ -1,3 +1,6 @@
+<?php session_start(); ?>
+
+
 <!DOCTYPE html>
 <html lang="de">
     <head>
@@ -10,22 +13,25 @@
 
     <body>
         <?php
-        session_start();
+        //session_start();
         require_once('./db/db_connection.php');
 
         $BN = strtolower($_POST['benutzername']);
         $PW = $_POST['passwort'];
+        //PW sollte noch gehashed werden
 
-        if (!empty($BN) || !empty($PW)) { //BN und PW ausgefuellt
+        if (!empty($BN) && !empty($PW)) { //BN und PW ausgefuellt
             db_connect();            
                 $sql = "Select * from benutzer where bn_name = '$BN'";
                 foreach($_SESSION['conn']->query($sql) as $row) {
-                    $bn_name = $row["bn_name"];
-                    $bn_pw = $row["bn_pw"];
+                    $db_bn_name = $row["bn_name"];
+                    $db_bn_pw = $row["bn_pw"];
+                    $db_bnID = $row["bnID"];
                 }
 
-            if ($BN == $bn_name && $PW == $bn_pw) { //BN und PW stimmen ueberein
+            if ($BN == $db_bn_name && $PW == $db_bn_pw) { //BN und PW stimmen ueberein
                     $_SESSION['session_on'] = "TRUE";
+                    $_SESSION['userID'] = $db_bnID;
                 header ( 'Location: ./diary_overview.php');
             }
             else {

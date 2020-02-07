@@ -1,3 +1,18 @@
+<?php 
+
+session_start();
+
+if ($_SESSION['session_on'] == 'TRUE') { 
+}
+
+else {   
+    ?><script>
+        alert("Ihre Sitzung ist abgelaufen");
+        window.location = 'login.php';
+    </script><?php 
+}
+?>
+
 <!DOCTYPE html>
 <html lang="de">
     <head>
@@ -18,7 +33,7 @@
                     <!--Datum auswählen fuer weches man den EIntrag erassen moechte-->
                     <li><p>Datum für den Eintrag: <input type="date" name="create_date" value="<?php echo date('Y-m-d'); ?>"></p></li>
                     <!--Datum an welchem der Eintrag erstellt wurde (Automatisches Datum beim erzeugen des Beitrages)-->
-                    <input type="hidden" id="date_create" name="date_create" value="<?php echo date('Y-m-d'); ?>">
+                    <input type="hidden" id="date_create" name="date_create" value="<?php //echo date('Y-m-d'); ?>">
 
                     <li><p>Kategorien 1:
                         <select name="kategorie1">
@@ -47,7 +62,7 @@
                         </select>
                         <input type="text" name="kat_input3" value="" placeholder="Freie Eingabe">
                     </p></li>
-                    <li><textarea cols="50" rows="10" maxlength="1500" name="input" form="usrform" placeholder="Bitte hier Ihren Tagebucheintrag erfassen..."></textarea></li>
+                    <textarea name="diary_text" cols="50" rows="10" maxlength="1500" placeholder="Bitte hier Ihren Tagebucheintrag erfassen..."></textarea>
                     <p>Datei wählen: <input type="file" name="myfile"><br></p>
                 
                     <input type="submit" value="Speichern">

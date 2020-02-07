@@ -10,6 +10,14 @@ elseif ($_GET['error_pw_same'] == TRUE) //Logindaten falsch
     $error_text = '<h1 class="error">Die eingegebenen Passwörter stimmen nicht überrein!</h1>';
     unset ($error_pw_same);
 }
+
+
+elseif ($_GET['error_bn_double'] == TRUE) //Benutzer ist bereits vorhanden
+{
+    $error_text = '<h1 class="error">Der eingegebene Benutzername wird bereits verwendet!</h1>';
+    unset ($error_bn_double);
+}
+
 else {}
 ?>
 

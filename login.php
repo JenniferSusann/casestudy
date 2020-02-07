@@ -2,7 +2,7 @@
 if ($_GET['error_blank'] == TRUE) //nicht alle Felder ausgefuellt
 {
     $error_text = '<h1 class="error">Bitte Benutername und Passwort erneut ausfüllen!</h1>';
-    unset ($error_login);
+    unset ($error_blank);
 }
 
 elseif ($_GET['zugang_falsch'] == TRUE) //Logindaten falsch

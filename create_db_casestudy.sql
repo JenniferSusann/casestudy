@@ -8,8 +8,11 @@
 create table benutzer
 (
 	bnID		    int 	        not null auto_increment,
+	vorname			varchar(70)		not null,
+	nachname		varchar(70)		not null,
 	bn_name			varchar(30)	    not null,
 	bn_pw			varchar(70)	    not null,
+	email			varchar(70)				,
 
 	constraint PK_benutzer primary key (bnID)
 );
@@ -26,6 +29,7 @@ create table tagebucheintrag
 (
 	bucheintragID	        int 		    not null auto_increment,
     bnID                    int     	    not null,
+	diary_text				varchar(50)		not null, --Muss noch angepasst werden auf ca. 1500
 	kategorieID_1           int     	            ,
     kategorieID_2           int     	            ,
     kategorieID_3           int     	            ,
@@ -65,10 +69,10 @@ alter table tagebucheintrag
 
 
 
-insert into benutzer (bn_name, bn_pw)
-	values	('ab', '123'),
-			('cd', '456'),
-            ('ef', '789');
+insert into benutzer (vorname, nachname, bn_name, bn_pw, email)
+	values	('a', 'b', 'ab', '123', 'ab@mail.ch'),
+			('c', 'd', 'cd', '456', 'cd@mail.ch'),
+            ('e', 'f', 'ef', '789', 'ef@mail.ch');
 
 insert into kategorie (beschreibung)
 	values	('Kat1'),
