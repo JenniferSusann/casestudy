@@ -42,8 +42,10 @@ else {}
         <ul>
             <li><input type="text" name="nachname" value="" placeholder="Nachname*"> </li>
             <li><input type="text" name="vorname" value="" placeholder="Vorname*"></li>
+            <li><input type="date" name="Geburtdatum" value="date" placeholder="Geburtsdatum"></li>
             <li><input type="text" name="benutzername" value="" placeholder="Benutzername*"></li>
-            <li><input type="email" name="email" value="" placeholder="E-Mail"></li> 
+            <li><input type="email" name="email" value="" placeholder="E-Mail*"></li>
+            <li><input type="email" name="email" value="" placeholder="E-Mail bestätigen*"></li>
             <li><input type="password" name="password" placeholder="Passwort*"></li>
             <li><input type="password" name="password_confirm" placeholder="Passwort bestätigen*"></li>
         
