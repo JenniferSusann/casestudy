@@ -33,10 +33,10 @@
                         if ($db_bn_name =="") {
                             echo "Erfolgreich";
 
-                        /*
+                        
                             $dbtabelle = "benutzer";
                             
-                            $stmt = $conn->prepare("INSERT INTO $dbtabelle (vorname, nachname, bn_name, bn_pw, email)
+                            $stmt = $_SESSION['conn']->prepare("INSERT INTO $dbtabelle (vorname, nachname, bn_name, bn_pw, email)
                             VALUES (:vorname, :nachname, :bn_name, :bn_pw, :email)");
                             $stmt->bindParam(':vorname', $vorname);
                             $stmt->bindParam(':nachname', $nachname);
@@ -46,7 +46,7 @@
 
                             $stmt->execute();
                             db_close();
-*/
+
                             ?><script>
                                 alert("Eintrag war erfolgreich!");
                                 window.location = 'login.php';

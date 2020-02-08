@@ -5,11 +5,13 @@ session_start();
 if ($_SESSION['session_on'] == 'TRUE') { 
 }
 
-else {   
+else { 
+    /*  
     ?><script>
         alert("Ihre Sitzung ist abgelaufen");
         window.location = 'login.php';
     </script><?php 
+    */
 }
 ?>
 

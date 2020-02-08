@@ -32,9 +32,6 @@
 
                 } 
                 
-                else {
-                    //echo "Hallo $value";
-                }
             }
 
             //Nur Auswahl oder Dropdown gewaehlt
@@ -43,9 +40,9 @@
                 (isset($_POST['kategorie1']) xor isset($_POST['kat_input1'])) and 
                 (isset($_POST['kategorie2']) xor isset($_POST['kat_input2']))
                ) {
-                    echo "Alles gut";
+                    //echo "Alles gut";
                 
-/*
+
                 //daten einfügen
                 $create_date = $_POST['create_date'];
                 $date_create = $_POST['date_create'];
@@ -60,10 +57,10 @@
                 db_connect();
 //DB noch anpassen auf diary_text
                 $dbtabelle = "tagebucheintrag";
-                        $stmt = $conn->prepare("INSERT INTO $dbtabelle (bnID, diary_text, kategorieID_1, kategorieID_2, kategorieID_3, datum_eintrag, datum_erstellung)
+                        $stmt = $_SESSION['conn']->prepare("INSERT INTO $dbtabelle (bnID, diary_text, kategorieID_1, kategorieID_2, kategorieID_3, datum_eintrag, datum_erstellung)
                         VALUES (:wert1, :wert2, :wert3, :wert4, :wert5, :wert6, :wert7)");
                         $stmt->bindParam(':wert1', $_SESSION['userID']);
-                        $stmt->bindParam(':wert2', $kat1);
+                        $stmt->bindParam(':wert2', $diary_text);
                         $stmt->bindParam(':wert3', $kat1);
                         $stmt->bindParam(':wert4', $kat2);
                         $stmt->bindParam(':wert5', $kat3);
@@ -72,7 +69,12 @@
 
                         $stmt->execute();
                         db_close();
-            */            
+
+                        ?><script>
+                        alert("Eintrag war erfolgreich!");
+                        window.location = 'diary_overview.php';
+                    </script><?php
+                      
            }
             
             else {
