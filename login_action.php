@@ -13,7 +13,6 @@
 
     <body>
         <?php
-        //session_start();
         require_once('./db/db_connection.php');
 
         $BN = strtolower($_POST['benutzername']);
@@ -30,7 +29,7 @@
                 }
 
             if ($BN == $db_bn_name && $PW == $db_bn_pw) { //BN und PW stimmen ueberein
-                    $_SESSION['session_on'] = "TRUE";
+                    $_SESSION['session_on'] = TRUE;
                     $_SESSION['userID'] = $db_bnID;
                 header ( 'Location: ./diary_overview.php');
             }
@@ -38,7 +37,6 @@
                 header ('Location: ./login.php?zugang_falsch=true'); //BN oder PW falsch
             }
         }
-
         else {
             header ('Location: ./login.php?error_blank=true'); //BN oder PW nicht ausgefüllt
         }

@@ -1,16 +1,18 @@
 <?php 
-if ($_GET['error_blank'] == TRUE) //nicht alle Felder ausgefuellt
+if (isset($_GET['error_blank'])) //nicht alle Felder ausgefuellt
 {
     $error_text = '<h1 class="error">Bitte Benutername und Passwort erneut ausfüllen!</h1>';
     unset ($error_blank);
 }
 
-elseif ($_GET['zugang_falsch'] == TRUE) //Logindaten falsch
+elseif (isset($_GET['zugang_falsch'])) //Logindaten falsch
 {
     $error_text = '<h1 class="error">Bitte Benutername und Passwort prüfen!</h1>';
     unset ($zugang_falsch);
 }
-else {}
+else {
+    $error_text = '';
+}
 ?>
 
 <!DOCTYPE html>
@@ -49,15 +51,6 @@ else {}
                 <br><br>   
                     <a href="register.php">Registrieren</a>
             </div>
-            
-            <!--Menue für ?-->
-            <!--
-                <nav class= "menu">
-                    <ul>
-                        <li>Hallo Velo</li>
-                    </ul> 
-                </nav> 
-            --> 
         </div>
     </body>
 </html>

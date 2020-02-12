@@ -8,9 +8,8 @@
         <title>Willkommen</title>
     </head>
 
-    <body>
-        <?php
-            header ( 'Location: ./login.php' );
+    <body><?php
+            header ('Location: ./login.php');
         ?>
     </body>
 </html>

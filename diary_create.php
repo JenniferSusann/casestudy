@@ -1,17 +1,38 @@
 <?php 
-
 session_start();
-
-if ($_SESSION['session_on'] == 'TRUE') { 
-}
-
-else { 
-    /*  
+//Include anderer Files
+require_once('./funktionen.php');
+/*
+//Session gestartet
+if (!isset($_SESSION['session_on'])) {
     ?><script>
         alert("Ihre Sitzung ist abgelaufen");
         window.location = 'login.php';
     </script><?php 
-    */
+}
+*/
+
+//Error Meldungen
+if (isset($_GET['error_blank'])) //nicht alle Felder ausgefuellt
+{
+    $error_text = '<h1 class="error">Bitte alle Pflichfelder ausfüllen!</h1>';
+    unset ($error_blank);
+}
+
+elseif (isset($_GET['error_text_blank'])) //Tagebucheintrag Text leer
+{
+    $error_text = '<h1 class="error">Bitte einen Tagebuch Text eintragen!</h1>';
+    unset ($error_blank);
+}
+
+elseif (isset($_GET['error_kat'])) //Kategorienwahl falsch
+{
+    $error_text = '<h1 class="error">Bitte pro Kategorie nur einen Wert wählen!</h1>';
+    unset ($error_kat);
+}
+
+else {
+    $error_text = '';
 }
 ?>
 
@@ -30,37 +51,33 @@ else {
             <h2>Tagebucheintrag erfassen</h2>
             <div class="diary-body">
             <div class="input_form">
+            <div class="error"><?=$error_text?></div>
                 <form action="diary_create_action.php" method="POST">
                 <ul>
                     <!--Datum auswählen fuer weches man den EIntrag erassen moechte-->
                     <li><p>Datum für den Eintrag: <input type="date" name="create_date" value="<?php echo date('Y-m-d'); ?>"></p></li>
                     <!--Datum an welchem der Eintrag erstellt wurde (Automatisches Datum beim erzeugen des Beitrages)-->
-                    <input type="hidden" id="date_create" name="date_create" value="<?php //echo date('Y-m-d'); ?>">
+                    <input type="hidden" id="date_create" name="date_create" value="<?php date('Y-m-d'); ?>">
+
+                    <!--Die Auswahlmoeglichkeiten fuer die Kategorien sollen aus der DB ausgelesen werden können und dann Dinamisch eingefuegt werden
+                    Die Kategorien werden dann auch in die DB geschrieben, es gibt Kat fuer alle und Benutzerdefinierte, loeschen kann man diese nicht, 
+                    sondern muss den Eintrag Kat anpassen uns somit ist die Kat dann weg.-->
 
                     <li><p>Kategorien 1:
-                        <select name="kategorie1">
-                            <option value="">Wählen</option>
-                            <option value="kat_familie1">Familie</option>
-                            <option value="kat_feste1">Feste</option>
-                            <option value="kat_schule1">Schule</option>
+                        <select name="kat1">
+                            <?php kat_auswahl(); ?>
                         </select>
                         <input type="text" name="kat_input1" value="" placeholder="Freie Eingabe">
                     </p></li>
                     <li><p>Kategorien 2:
-                        <select name="kategorie2">
-                        <option value="">Wählen</option>
-                            <option value="kat_familie2">Familie</option>
-                            <option value="kat_feste2">Feste</option>
-                            <option value="kat_schule2">Schule</option>
+                        <select name="kat2">
+                            <?php kat_auswahl(); ?>
                         </select>
                         <input type="text" name="kat_input2" value="" placeholder="Freie Eingabe">
                     </p></li>
                     <li><p>Kategorien 3:
-                        <select name="kategorie3">
-                        <option value="">Wählen</option>
-                            <option value="kat_familie3">Familie</option>
-                            <option value="kat_feste3">Feste</option>
-                            <option value="kat_schule3">Schule</option>
+                        <select name="kat3">
+                            <?php kat_auswahl(); ?>
                         </select>
                         <input type="text" name="kat_input3" value="" placeholder="Freie Eingabe">
                     </p></li>
@@ -75,8 +92,4 @@ else {
             </div>  
             </div>
         </div>
-    <?php        
-            
-            
-    ?>
     </body>

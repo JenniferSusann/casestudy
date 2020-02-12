@@ -10,6 +10,7 @@ create table benutzer
 	bnID		    int 	        not null auto_increment,
 	vorname			varchar(70)		not null,
 	nachname		varchar(70)		not null,
+	geburtsdatum	date					,
 	bn_name			varchar(30)	    not null,
 	bn_pw			varchar(70)	    not null,
 	email			varchar(70)				,
@@ -29,7 +30,7 @@ create table tagebucheintrag
 (
 	bucheintragID	        int 		    not null auto_increment,
     bnID                    int     	    not null,
-	diary_text				varchar(50)		not null, --Muss noch angepasst werden auf ca. 1500
+	diary_text				varchar(50)		not null, 
 	kategorieID_1           int     	            ,
     kategorieID_2           int     	            ,
     kategorieID_3           int     	            ,
@@ -69,18 +70,18 @@ alter table tagebucheintrag
 
 
 
-insert into benutzer (vorname, nachname, bn_name, bn_pw, email)
-	values	('a', 'b', 'ab', '123', 'ab@mail.ch'),
-			('c', 'd', 'cd', '456', 'cd@mail.ch'),
-            ('e', 'f', 'ef', '789', 'ef@mail.ch');
+insert into benutzer (vorname, nachname, geburtsdatum, bn_name, bn_pw, email)
+	values	('a', 'b', '2020-12-01', 'ab', '123', 'ab@mail.ch'),
+			('c', 'd', '2020-12-02', 'cd', '456', 'cd@mail.ch'),
+            ('e', 'f', '2020-12-03', 'ef', '789', 'ef@mail.ch');
 
 insert into kategorie (beschreibung)
 	values	('Kat1'),
             ('Kat2'),
             ('Kat3');
 
-insert into tagebucheintrag (bnID, kategorieID_1, kategorieID_2, kategorieID_3, datum_eintrag, datum_erstellung)
-	values	(1, 1, 2, 3, '2020-01-25', '2020-01-25'),
-			(1, 1, 2, 3, '2020-01-26', '2020-01-26'),
-            (2, 1, 2, 3, '2020-01-27', '2020-01-27');
+insert into tagebucheintrag (bnID, diary_text, kategorieID_1, kategorieID_2, kategorieID_3, datum_eintrag, datum_erstellung)
+	values	(1, 'Text', 1, 2, 3, '2020-01-25', '2020-01-25'),
+			(1, 'Text', 1, 2, 3, '2020-01-26', '2020-01-26'),
+            (2, 'Text', 1, 2, 3, '2020-01-27', '2020-01-27');
 

@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,6 +26,7 @@
             function db_close() {        
                 //verbindung schliessen
                 $_SESSION['conn'] = null;
+                unset($_SESSION['conn']);
             }
         ?>
     </body>

@@ -14,8 +14,8 @@
                 header ( 'Location: ./diary_create.php');
             }
             elseif (isset($_POST['logout'])) {
-                $_SESSION['session_on'] = false;
                 session_destroy();
+                unset($_SESSION);
                 ?><script>
                     alert("Sie wurden erfolgreich abgemeldet");
                     window.location = 'login.php';
