@@ -1,16 +1,18 @@
-<?php 
-session_start();
+<?php
+session_start(); 
+//Include anderer Files
 require_once('./funktionen.php');
+
 //voruebergehend
-//$_SESSION['session_on'] = TRUE;
+var_dump($_SESSION);
+
 //Session gestartet
-/*
 if (!isset($_SESSION['session_on'])) {
     ?><script>
         alert("Ihre Sitzung ist abgelaufen");
         window.location = 'login.php';
     </script><?php 
-}*/
+}
 ?>
 
 <!DOCTYPE html>
@@ -30,28 +32,26 @@ if (!isset($_SESSION['session_on'])) {
             <div class="input_form">
             <!--falls geburtstag dann eine Meldung anzeigen-->
 
-            <!--Bestehende Einträge anzeigen-->
-            <!--Filtermöglichkeiten(Datum zwischen/Kategorie)-->
-            <form action="diary_create_action.php" method="POST">
-                <ul>
-                    <!--Datumsbereich auswählen fuer welchen man filten moechte-->
-                    <li><p>Suche Einträge zwischen dem <input type="date" name="create_date" value="<?php echo date('Y-m-d'); ?>"> 
-                    und dem <input type="date" name="create_date" value="<?php echo date('Y-m-d'); ?>"></p></li>
+                <!--Bestehende Einträge anzeigen-->
+                <!--Filtermöglichkeiten(Datum zwischen/Kategorie)-->
+                <form action="diary_create_action.php" method="POST">
+                    <ul>
+                        <!--Datumsbereich auswählen fuer welchen man filten moechte-->
+                        <li><p>Suche Einträge zwischen dem <input type="date" name="create_date" value="<?php echo date('Y-m-d'); ?>"> 
+                        und dem <input type="date" name="create_date" value="<?php echo date('Y-m-d'); ?>"></p></li>
 
-                    <li><p>Kategorie:
-                        <select name="kat_filter">
-                            <?php kat_auswahl(); ?>
-                        </select>
-                    </p></li>
-                    
-                
-                    <input type="submit" value="Nach Einträgen suchen">
-                    <input type="reset" value="Filter reseten"/>
-                </ul>   
-                </form>
+                        <li><p>Kategorie:
+                            <select name="kat_filter">
+                                <?php kat_auswahl(); ?>
+                            </select>
+                        </p></li>
+                        <input type="submit" value="Nach Einträgen suchen">
+                        <input type="reset" value="Filter reseten"/>
+                    </ul>   
+                    </form>
+
                 <!--Button neuer Eintrag erfassen oder Logout-->
                 <form action="diary_overview_action.php" method="POST">
-                   
                     <input type="submit" name="logout" value="Abmelden">
                     <input type="submit" name="new_diary" value="Neuer Beitrag erstellen">
                 </form>

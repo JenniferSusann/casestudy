@@ -1,4 +1,8 @@
-<?php 
+<?php
+session_start(); 
+//Include anderer Files
+require_once('./funktionen.php');
+
 if (isset($_GET['error_blank'])) //nicht alle Felder ausgefuellt
 {
     $error_text = '<h1 class="error">Bitte alle Pflichfelder ausfüllen!</h1>';

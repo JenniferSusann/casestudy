@@ -1,8 +1,8 @@
 <?php 
-session_start();
+session_start(); 
 //Include anderer Files
 require_once('./funktionen.php');
-/*
+
 //Session gestartet
 if (!isset($_SESSION['session_on'])) {
     ?><script>
@@ -10,7 +10,7 @@ if (!isset($_SESSION['session_on'])) {
         window.location = 'login.php';
     </script><?php 
 }
-*/
+
 
 //Error Meldungen
 if (isset($_GET['error_blank'])) //nicht alle Felder ausgefuellt
@@ -56,9 +56,7 @@ else {
                 <ul>
                     <!--Datum auswählen fuer weches man den EIntrag erassen moechte-->
                     <li><p>Datum für den Eintrag: <input type="date" name="create_date" value="<?php echo date('Y-m-d'); ?>"></p></li>
-                    <!--Datum an welchem der Eintrag erstellt wurde (Automatisches Datum beim erzeugen des Beitrages)-->
-                    <input type="hidden" id="date_create" name="date_create" value="<?php date('Y-m-d'); ?>">
-
+                    
                     <!--Die Auswahlmoeglichkeiten fuer die Kategorien sollen aus der DB ausgelesen werden können und dann Dinamisch eingefuegt werden
                     Die Kategorien werden dann auch in die DB geschrieben, es gibt Kat fuer alle und Benutzerdefinierte, loeschen kann man diese nicht, 
                     sondern muss den Eintrag Kat anpassen uns somit ist die Kat dann weg.-->

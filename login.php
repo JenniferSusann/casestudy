@@ -1,3 +1,9 @@
+<?php
+session_start(); 
+//Include anderer Files
+require_once('./funktionen.php');
+?>
+
 <?php 
 if (isset($_GET['error_blank'])) //nicht alle Felder ausgefuellt
 {
@@ -46,9 +52,7 @@ else {
                             <input type="submit" value="Einloggen">
                     </form>
                     </div>  
-                </div>
-                
-                <br><br>   
+                </div><br><br>   
                     <a href="register.php">Registrieren</a>
             </div>
         </div>

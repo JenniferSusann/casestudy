@@ -21,6 +21,7 @@ create table benutzer
 create table kategorie
 (
 	kategorieID	    int 		    not null auto_increment,
+	bnID			int				not null,
 	beschreibung    varchar(30)	            ,
 
 	constraint PK_buecher primary key (kategorieID)
@@ -66,19 +67,20 @@ alter table tagebucheintrag
 			references benutzer (bnID) 
 				on delete no action
 				on update cascade;
-
-
-
+alter table kategorie 
+	add CONSTRAINT UQ_kategorie_beschreibung 
+    unique (beschreibung);
+	
 
 insert into benutzer (vorname, nachname, geburtsdatum, bn_name, bn_pw, email)
 	values	('a', 'b', '2020-12-01', 'ab', '123', 'ab@mail.ch'),
 			('c', 'd', '2020-12-02', 'cd', '456', 'cd@mail.ch'),
             ('e', 'f', '2020-12-03', 'ef', '789', 'ef@mail.ch');
 
-insert into kategorie (beschreibung)
-	values	('Kat1'),
-            ('Kat2'),
-            ('Kat3');
+insert into kategorie (bnID, beschreibung)
+	values	(0, 'Familie'),
+            (0, 'Feste'),
+            (0, 'Schule');
 
 insert into tagebucheintrag (bnID, diary_text, kategorieID_1, kategorieID_2, kategorieID_3, datum_eintrag, datum_erstellung)
 	values	(1, 'Text', 1, 2, 3, '2020-01-25', '2020-01-25'),
