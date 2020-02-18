@@ -38,6 +38,7 @@ require_once('./funktionen.php');
             if ($kat1 != $kat2 and $kat1 != $kat3 and $kat2 != $kat3) {
 
                 //Kategorien in DB einfügen falls nicht vorhanden
+                //Anpassen damit keine Beschreibungen von BN 0 gemacht werden koennen
                 $db_conn = db_connect();
                 $dbtabelle = "kategorie";
                     $kat_fill = array($kat1, $kat2, $kat3);

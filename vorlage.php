@@ -16,7 +16,7 @@ if (!isset($_SESSION['session_on'])) {
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width", inital-scale=1.0">
         <link rel="stylesheet" href="style.css">
-        <link rel="shortcut icon" href="bilder\favicon.ico">
+        <link rel="shortcut icon" href="./bilder\favicon.ico">
         <title>Willkommen</title>
     </head>
 

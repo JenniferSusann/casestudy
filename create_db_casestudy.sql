@@ -49,27 +49,28 @@ create table tagebucheintrag
 alter table tagebucheintrag
 	add constraint FK_bucheintrag_kategorieID_1 foreign key (kategorieID_1)
 			references kategorie (kategorieID) 
-				on delete no action
+				on delete restrict
 				on update cascade;
 alter table tagebucheintrag
 	add constraint FK_bucheintrag_kategorieID_2 foreign key (kategorieID_2)
 			references kategorie (kategorieID) 
-				on delete no action
+				on delete restrict
 				on update cascade;
 alter table tagebucheintrag
 	add constraint FK_bucheintrag_kategorieID_3 foreign key (kategorieID_3)
 			references kategorie (kategorieID) 
-				on delete no action
+				on delete restrict
 				on update cascade;
 
 alter table tagebucheintrag
 	add constraint FK_bucheintrag_bnID foreign key (bnID)
 			references benutzer (bnID) 
-				on delete no action
+				on delete restrict
 				on update cascade;
+
 alter table kategorie 
 	add CONSTRAINT UQ_kategorie_beschreibung 
-    unique (beschreibung);
+    unique (bnID, beschreibung);
 	
 
 insert into benutzer (vorname, nachname, geburtsdatum, bn_name, bn_pw, email)

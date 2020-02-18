@@ -15,7 +15,13 @@ require_once('./funktionen.php');
             window.location = 'login.php';
         </script><?php
     }
+
+    elseif (isset($_POST['filter'])) {
+        $_SESSION['kat_filter'] = $_POST['kat_filter'];
+        header ( 'Location: ./diary_display.php');
+    }
+
     else {
         header ( 'Location: ./diary_overview.php');
     }                      
-    ?>
+?>

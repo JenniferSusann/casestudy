@@ -39,6 +39,11 @@ body {
     font-size: 0.4em;
 }
 
+.table{
+    font-family: arial;
+    font-size: 0.5em;
+}
+
 a:visited {
     color: rgb(61, 56, 52);
 }

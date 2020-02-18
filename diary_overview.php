@@ -21,7 +21,7 @@ if (!isset($_SESSION['session_on'])) {
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width", inital-scale=1.0">
         <link rel="stylesheet" href="style.css">
-        <link rel="shortcut icon" href="bilder\favicon.ico">
+        <link rel="shortcut icon" href="./bilder/favicon.ico">
         <title>Dein Tagebuch</title>
     </head>
 
@@ -34,7 +34,7 @@ if (!isset($_SESSION['session_on'])) {
 
                 <!--Bestehende Einträge anzeigen-->
                 <!--Filtermöglichkeiten(Datum zwischen/Kategorie)-->
-                <form action="diary_create_action.php" method="POST">
+                <form action="diary_overview_action.php" method="POST">
                     <ul>
                         <!--Datumsbereich auswählen fuer welchen man filten moechte-->
                         <li><p>Suche Einträge zwischen dem <input type="date" name="create_date" value="<?php echo date('Y-m-d'); ?>"> 
@@ -45,7 +45,7 @@ if (!isset($_SESSION['session_on'])) {
                                 <?php kat_auswahl(); ?>
                             </select>
                         </p></li>
-                        <input type="submit" value="Nach Einträgen suchen">
+                        <input type="submit" name="filter" value="Nach Einträgen suchen">
                         <input type="reset" value="Filter reseten"/>
                     </ul>   
                     </form>
