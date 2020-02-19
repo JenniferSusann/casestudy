@@ -43,9 +43,6 @@ create table tagebucheintrag
 	constraint PK_bucheintrag primary key (bucheintragID)
 );
 
-
-
-
 alter table tagebucheintrag
 	add constraint FK_bucheintrag_kategorieID_1 foreign key (kategorieID_1)
 			references kategorie (kategorieID) 

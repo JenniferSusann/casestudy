@@ -29,31 +29,46 @@ require_once('./db/db_connection.php');
 
     function diary_filter() {
         $db_conn = db_connect();
+            //filtern nach Datum ohne eintraege
             if (isset($_POST['out_date'])) {
                 echo "Datum ohne Einträge";
             }
             
+            //filtern nach bestimmten Datumbereich
             else {
                 $userID = $_SESSION['userID'];
-                $kat_filter = $_SESSION['kat_filter'];
-
-                $sql = "Select date_format(tagebucheintrag.datum_eintrag,'%d.%m.%Y') as datum_eintrag_convert, tagebucheintrag.diary_text, Kat1.beschreibung as kat_besch_1, Kat2.beschreibung as kat_besch_2, Kat3.beschreibung as kat_besch_3 
-                from tagebucheintrag
-                inner join benutzer ON tagebucheintrag.bnID = benutzer.bnID
-                left join kategorie as Kat1 ON tagebucheintrag.kategorieID_1 = Kat1.kategorieID  
-                left join kategorie as Kat2 ON tagebucheintrag.kategorieID_2 = Kat2.kategorieID 
-                left join kategorie as Kat3 ON tagebucheintrag.kategorieID_3 = Kat3.kategorieID 
-                where tagebucheintrag.bnID = '$userID' and 
-                    (tagebucheintrag.kategorieID_1 = 
-                    (select kategorie.kategorieID from kategorie where (kategorie.bnID = 0 or kategorie.bnID = '$userID') 
-                    and kategorie.beschreibung = '$kat_filter') or
-                    tagebucheintrag.kategorieID_2 = 
-                    (select kategorie.kategorieID from kategorie where (kategorie.bnID = 0 or kategorie.bnID = '$userID') 
-                    and kategorie.beschreibung = '$kat_filter') or 
-                    tagebucheintrag.kategorieID_3 = 
-                    (select kategorie.kategorieID from kategorie where (kategorie.bnID = 0 or kategorie.bnID = '$userID') 
-                    and kategorie.beschreibung = '$kat_filter'))
-                order by tagebucheintrag.datum_eintrag";
+                if (!isset($_SESSION['kat_filter'])) {
+                    //Abfrage der Eintraege ohne Filter
+                    $sql = "Select date_format(tagebucheintrag.datum_eintrag,'%d.%m.%Y') as datum_eintrag_convert, tagebucheintrag.diary_text, Kat1.beschreibung as kat_besch_1, Kat2.beschreibung as kat_besch_2, Kat3.beschreibung as kat_besch_3 
+                            from tagebucheintrag
+                            inner join benutzer ON tagebucheintrag.bnID = benutzer.bnID
+                            left join kategorie as Kat1 ON tagebucheintrag.kategorieID_1 = Kat1.kategorieID  
+                            left join kategorie as Kat2 ON tagebucheintrag.kategorieID_2 = Kat2.kategorieID 
+                            left join kategorie as Kat3 ON tagebucheintrag.kategorieID_3 = Kat3.kategorieID 
+                            where tagebucheintrag.bnID = '$userID'
+                            order by tagebucheintrag.datum_eintrag";
+                }
+                else {
+                    //Abfrage der Eintraege mit gesetztem Filter
+                    $kat_filter = $_SESSION['kat_filter'];
+                    $sql = "Select date_format(tagebucheintrag.datum_eintrag,'%d.%m.%Y') as datum_eintrag_convert, tagebucheintrag.diary_text, Kat1.beschreibung as kat_besch_1, Kat2.beschreibung as kat_besch_2, Kat3.beschreibung as kat_besch_3 
+                            from tagebucheintrag
+                            inner join benutzer ON tagebucheintrag.bnID = benutzer.bnID
+                            left join kategorie as Kat1 ON tagebucheintrag.kategorieID_1 = Kat1.kategorieID  
+                            left join kategorie as Kat2 ON tagebucheintrag.kategorieID_2 = Kat2.kategorieID 
+                            left join kategorie as Kat3 ON tagebucheintrag.kategorieID_3 = Kat3.kategorieID 
+                            where tagebucheintrag.bnID = '$userID' and 
+                                (tagebucheintrag.kategorieID_1 = 
+                                (select kategorie.kategorieID from kategorie where (kategorie.bnID = 0 or kategorie.bnID = '$userID') 
+                                and kategorie.beschreibung = '$kat_filter') or
+                                tagebucheintrag.kategorieID_2 = 
+                                (select kategorie.kategorieID from kategorie where (kategorie.bnID = 0 or kategorie.bnID = '$userID') 
+                                and kategorie.beschreibung = '$kat_filter') or 
+                                tagebucheintrag.kategorieID_3 = 
+                                (select kategorie.kategorieID from kategorie where (kategorie.bnID = 0 or kategorie.bnID = '$userID') 
+                                and kategorie.beschreibung = '$kat_filter'))
+                            order by tagebucheintrag.datum_eintrag";
+                }            
         ?>
                     <table>
                     <tr>
@@ -76,8 +91,8 @@ require_once('./db/db_connection.php');
         <?php
                     }
                     echo "</table>";
-                }
-                //unset($_SESSION['kat_filter']);
+            }
+                unset($sql);
                 db_close();
     }
 

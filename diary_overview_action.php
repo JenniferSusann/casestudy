@@ -17,7 +17,12 @@ require_once('./funktionen.php');
     }
 
     elseif (isset($_POST['filter'])) {
-        $_SESSION['kat_filter'] = $_POST['kat_filter'];
+        if ($_POST['kat_filter'] == '') { //Filer steht auf Waehlen
+            unset($_SESSION['kat_filter']);
+        }
+        else { //Filter ist ausgefuellt
+            $_SESSION['kat_filter'] = $_POST['kat_filter']; 
+        }
         header ( 'Location: ./diary_display.php');
     }
 

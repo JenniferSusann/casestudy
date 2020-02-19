@@ -16,14 +16,16 @@ require_once('./funktionen.php');
         //Nur Auswahl oder Dropdown gewaehlt
         if (                   
             //Nicht (a und b) (NAND)
+            //Nicht Drop und Eingabe ausgefauellt
             !(isset($_POST['kat1']) and isset($_POST['kat_input1'])) and 
             !(isset($_POST['kat2']) and isset($_POST['kat_input2'])) and
-            !(isset($_POST['kat3']) and isset($_POST['kat_input3']))
+            !(isset($_POST['kat3']) and isset($_POST['kat_input3']))            
         ) {
-                                
+                                    
             //daten einfügen
             $create_date = $_POST['create_date'];
             //Datum an welchem der Eintrag erstellt wurde (Automatisches Datum beim erzeugen des Beitrages)
+            //#Zeit noch hinzufügen fuer anzeige nach Altern, falls an einem Tag mehrere eintraege erfasst wurden
             $date_create = $_SESSION['date_today'];
 
             if (isset($_POST['kat1'])) $kat1 = $_POST['kat1'];
@@ -34,24 +36,53 @@ require_once('./funktionen.php');
             if (isset($_POST['kat_input3'])) $kat3 = $_POST['kat_input3'];
             $diary_text = $_POST['diary_text'];
             $userID = $_SESSION['userID'];
-            
-            if ($kat1 != $kat2 and $kat1 != $kat3 and $kat2 != $kat3) {
 
+                if (isset($kat1)) {
+                    if ($kat1 != $kat2 and $kat1 != $kat3) {
+                        $kat_diff = TRUE;
+                    }
+                    else {
+                        unset($kat_diff);
+                    }
+                }
+                elseif (isset($kat2)) {
+                    if ($kat2 != $kat3) {
+                        $kat_diff = TRUE;
+                    }
+                    else {
+                        unset($kat_diff);
+                    }
+                }
+                else {
+                    $kat_diff = TRUE;
+                }
+
+            if (isset($kat_diff)) {
+                
                 //Kategorien in DB einfügen falls nicht vorhanden
-                //Anpassen damit keine Beschreibungen von BN 0 gemacht werden koennen
                 $db_conn = db_connect();
                 $dbtabelle = "kategorie";
-                    $kat_fill = array($kat1, $kat2, $kat3);
-                    foreach ($kat_fill as $value) {
-                        $stmt = $db_conn->prepare("INSERT INTO $dbtabelle (bnID, beschreibung)
-                            VALUES (:bnID, :beschreibung)");
-                            $stmt->bindParam(':bnID', $userID);
-                            $stmt->bindParam(':beschreibung', $value);
-                            $stmt->execute();
+                $kat_fill = array($kat1, $kat2, $kat3);
+                var_dump($db_conn);
+                foreach ($kat_fill as $value) {
+                    $sql = "Select * from $dbtabelle where beschreibung = '$value' and (bnID = 0 or bnID = '$userID')";
+
+                    foreach($db_conn->query($sql) as $row) { 
+                        unset($value);
                     }
+
+                    if (isset($value)) {
+                        $stmt = $db_conn->prepare("INSERT INTO $dbtabelle (bnID, beschreibung)
+                                VALUES (:bnID, :beschreibung)");
+                                $stmt->bindParam(':bnID', $userID);
+                                $stmt->bindParam(':beschreibung', $value);
+                                $stmt->execute();
+                    }
+                }
                     unset($dbtabelle);
 
                     //Tabebucheintrag einfuegen
+                    //#Bild in DB speichern
                     $dbtabelle = "tagebucheintrag";
                     $stmt = $db_conn->prepare("INSERT INTO $dbtabelle (bnID, diary_text, kategorieID_1, kategorieID_2, kategorieID_3, datum_eintrag, datum_erstellung)
                             VALUES (:abnID, 
@@ -76,15 +107,17 @@ require_once('./funktionen.php');
                             ?><script>
                             alert("Eintrag war erfolgreich!");
                             window.location = 'diary_overview.php';
-                        </script><?php
-            }
+                        </script><?php                    
+        }
+        
             else {
                 header ('Location: ./diary_create.php?error_kat=true'); //input oder dropdown mehrmals gewaehlt
             }
-        }
-        else {
-            header ('Location: ./diary_create.php?error_kat=true'); //input und dorpdown für Kat
-        }
+    }
+
+    else {
+        header ('Location: ./diary_create.php?error_kat=true'); //input und dorpdown für Kat
+    }
                 
     }
     else {

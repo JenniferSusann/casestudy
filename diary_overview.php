@@ -37,8 +37,8 @@ if (!isset($_SESSION['session_on'])) {
                 <form action="diary_overview_action.php" method="POST">
                     <ul>
                         <!--Datumsbereich auswählen fuer welchen man filten moechte-->
-                        <li><p>Suche Einträge zwischen dem <input type="date" name="create_date" value="<?php echo date('Y-m-d'); ?>"> 
-                        und dem <input type="date" name="create_date" value="<?php echo date('Y-m-d'); ?>"></p></li>
+                        <li><p>Suche Einträge zwischen dem <input type="date" name="create_date" value="<?php echo date('Y-m-d', strtotime('-1 week')); ?>"> <!--aktuelles Datum - 1 Woche--> 
+                        und dem <input type="date" name="create_date" value="<?php echo date('Y-m-d'); ?>"></p></li> <!--aktuelles Datum-->
 
                         <li><p>Kategorie:
                             <select name="kat_filter">
