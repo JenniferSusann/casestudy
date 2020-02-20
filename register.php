@@ -62,7 +62,6 @@ else {
             <!-- <input type="reset" value="Reset"/> -->
             <input type="button" value="Abbrechen" onclick="window.location.href='login.php'">
         </ul>        
-    
     </div>
     </div>
     </body>

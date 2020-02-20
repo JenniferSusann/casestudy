@@ -4,17 +4,15 @@ require_once('./db/db_connection.php');
 
     //Funktion zur erstellung des Dropdownmenue
     function kat_auswahl() {
-        //Das Array muss durch die Werte aus der Datenbank ersetzt werden (für jeden Benutzer anderst)
-        //$arrey = array('Familie', 'Feste', 'Schule'); 
         $arrey = $_SESSION['bn_kat']; 
-        //Werte fuer Dropdown Menu erstellen
-                echo "<option value=''>Wählen</option>";
-                foreach ($arrey as $value) {
-                echo "<option value='$value'>$value</option>";  
-                }
+            //Werte fuer Dropdown Menu erstellen
+            echo "<option value=''>Wählen</option>";
+            foreach ($arrey as $value) {
+            echo "<option value='$value'>$value</option>";  
+            }
     }
 
-
+    //Kat des Benutzers ermitteln
     function kat_ermitteln() {
         $db_conn = db_connect();
         $userID = $_SESSION['userID'];
@@ -27,6 +25,7 @@ require_once('./db/db_connection.php');
         db_close();
     }
 
+    //Filtern der Eintraege fuer den Benutzer
     function diary_filter() {
         $db_conn = db_connect();
             //filtern nach Datum ohne eintraege

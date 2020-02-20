@@ -4,9 +4,11 @@ session_start();
 require_once('./funktionen.php');
     
     //Abfrage wie weiter
+    //Neuer Beitrag
     if (isset($_POST['new_diary'])) {
         header ( 'Location: ./diary_create.php');
     }
+    //Logout
     elseif (isset($_POST['logout'])) {
         session_destroy();
         unset($_SESSION);
@@ -15,7 +17,7 @@ require_once('./funktionen.php');
             window.location = 'login.php';
         </script><?php
     }
-
+    //Eintraege filtern und anzeigen
     elseif (isset($_POST['filter'])) {
         if ($_POST['kat_filter'] == '') { //Filer steht auf Waehlen
             unset($_SESSION['kat_filter']);
@@ -26,6 +28,7 @@ require_once('./funktionen.php');
         header ( 'Location: ./diary_display.php');
     }
 
+    //auf Seite bleiben
     else {
         header ( 'Location: ./diary_overview.php');
     }                      

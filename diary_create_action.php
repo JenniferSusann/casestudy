@@ -28,6 +28,7 @@ require_once('./funktionen.php');
             //#Zeit noch hinzufügen fuer anzeige nach Altern, falls an einem Tag mehrere eintraege erfasst wurden
             $date_create = $_SESSION['date_today'];
 
+            //Beschreiben der Var mit den Kat
             if (isset($_POST['kat1'])) $kat1 = $_POST['kat1'];
             if (isset($_POST['kat_input1'])) $kat1 = $_POST['kat_input1'];
             if (isset($_POST['kat2'])) $kat2 = $_POST['kat2'];
@@ -37,6 +38,7 @@ require_once('./funktionen.php');
             $diary_text = $_POST['diary_text'];
             $userID = $_SESSION['userID'];
 
+                //gewaehlte Kat nicht gleich
                 if (isset($kat1)) {
                     if ($kat1 != $kat2 and $kat1 != $kat3) {
                         $kat_diff = TRUE;

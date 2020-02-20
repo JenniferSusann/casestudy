@@ -6,7 +6,7 @@ require_once('./funktionen.php');
    
     $BN = strtolower($_POST['benutzername']);
     $PW = $_POST['passwort'];
-    //PW sollte noch gehashed werden
+    //#PW sollte noch gehashed werden
     if (!empty($BN) && !empty($PW)) { //BN und PW ausgefuellt
         $db_conn = db_connect();   
             $sql = "Select * from benutzer where bn_name = '$BN'";

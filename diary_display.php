@@ -27,7 +27,8 @@ if (!isset($_SESSION['session_on'])) {
             <div class="diary-body">
                 <div class="table">
                     <?php
-                        diary_filter();
+                        //Filtern der Eintraege und anzeigen
+                        diary_filter(); //File Funktionen
                     ?>
             </div>
             </div>

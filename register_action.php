@@ -12,12 +12,17 @@ require_once('./funktionen.php');
     $bn_pw_confirm = $_POST['password_confirm'];
     $email = strtolower($_POST['email']);
     $email_confirm = strtolower($_POST['email_confirm']);
+    //alle Pflichtfelder ausgefuellt
     if (!empty($vorname) && !empty($nachname) && !empty($bn_name) && !empty($bn_pw) && !empty($bn_pw_confirm)) { 
 
+        //2x Email nicht leer und stimmen ueberrein
         if (!empty($email) && !empty($email_confirm) and ($email == $email_confirm)) {
-        //Gebürtsdatum < heut und > 1900
-        //if (!empty($email) && !empty($email_confirm) and ($email == $email_confirm) and 
-        //($geburtsdatum > '1900-01-01') and ($geburtsdatum < '$_SESSION['date_today']')) {
+        //#Gebürtsdatum < heut und > 1900
+            //if (!empty($email) && !empty($email_confirm) and ($email == $email_confirm) and 
+            //($geburtsdatum > '1900-01-01') and ($geburtsdatum < '$_SESSION['date_today']')) {
+            
+            //PW identisch und nicht leer
+            //#anpassen so dass beide Abfragen gleich
             if ($bn_pw == $bn_pw_confirm && $bn_pw != "") {
                 $db_conn = db_connect();
 
@@ -27,6 +32,7 @@ require_once('./funktionen.php');
                     $db_bn_name = $row["bn_name"];
                 }
 
+                    //BN ist noch nicht vorhanden
                     if ($db_bn_name == "") {
 
                         $dbtabelle = "benutzer";
