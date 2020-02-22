@@ -38,7 +38,7 @@ require_once('./db/db_connection.php');
                 $userID = $_SESSION['userID'];
                 if (!isset($_SESSION['kat_filter'])) {
                     //Abfrage der Eintraege ohne Filter
-                    $sql = "Select date_format(tagebucheintrag.datum_eintrag,'%d.%m.%Y') as datum_eintrag_convert, tagebucheintrag.diary_text, Kat1.beschreibung as kat_besch_1, Kat2.beschreibung as kat_besch_2, Kat3.beschreibung as kat_besch_3 
+                    $sql = "Select tagebucheintrag.bucheintragID, date_format(tagebucheintrag.datum_eintrag,'%d.%m.%Y') as datum_eintrag_convert, tagebucheintrag.diary_text, Kat1.beschreibung as kat_besch_1, Kat2.beschreibung as kat_besch_2, Kat3.beschreibung as kat_besch_3 
                             from tagebucheintrag
                             inner join benutzer ON tagebucheintrag.bnID = benutzer.bnID
                             left join kategorie as Kat1 ON tagebucheintrag.kategorieID_1 = Kat1.kategorieID  
@@ -50,7 +50,7 @@ require_once('./db/db_connection.php');
                 else {
                     //Abfrage der Eintraege mit gesetztem Filter
                     $kat_filter = $_SESSION['kat_filter'];
-                    $sql = "Select date_format(tagebucheintrag.datum_eintrag,'%d.%m.%Y') as datum_eintrag_convert, tagebucheintrag.diary_text, Kat1.beschreibung as kat_besch_1, Kat2.beschreibung as kat_besch_2, Kat3.beschreibung as kat_besch_3 
+                    $sql = "Select tagebucheintrag.bucheintragID, date_format(tagebucheintrag.datum_eintrag,'%d.%m.%Y') as datum_eintrag_convert, tagebucheintrag.diary_text, Kat1.beschreibung as kat_besch_1, Kat2.beschreibung as kat_besch_2, Kat3.beschreibung as kat_besch_3 
                             from tagebucheintrag
                             inner join benutzer ON tagebucheintrag.bnID = benutzer.bnID
                             left join kategorie as Kat1 ON tagebucheintrag.kategorieID_1 = Kat1.kategorieID  
@@ -69,8 +69,10 @@ require_once('./db/db_connection.php');
                             order by tagebucheintrag.datum_eintrag";
                 }            
         ?>
+                    <form action="diary_display_action.php" method="post" id="usrform"> <!--ID wird für Textarea gebraucht zur Auswertung-->
                     <table>
                     <tr>
+                        <th></th>
                         <th>Datum</th>
                         <th>Tagebuchtext</th>
                         <th>Kategorie 1</th>
@@ -78,21 +80,34 @@ require_once('./db/db_connection.php');
                         <th>Kategorie 3</th>
                     </tr>
         <?php
-                    foreach($db_conn->query($sql) as $row) {
-        ?>
+                $test = 1;
+                    foreach($db_conn->query($sql) as $row) {                  
+        ?>                          
                         <tr>
+                            <!-- <td><input type="checkbox" name="delete_select_zeile[]" value="<?php//echo $row['bucheintragID'] ?>"></td> -->
+                            <td><input type="radio" name="delete_select_zeile[]" value="<?php echo $row['bucheintragID'] ?>"></td>
                             <td><?php echo $row['datum_eintrag_convert'];?></td>
                             <td><?php echo $row['diary_text']; ?></td>
                             <td><?php echo $row['kat_besch_1']; ?></td>
                             <td><?php echo $row['kat_besch_2']; ?></td>
                             <td><?php echo $row['kat_besch_3']; ?></td>
-                        </tr>    
+                            <td><?php echo $row['bucheintragID']; ?></td>
+                            
+                        </tr> 
+                    
         <?php
                     }
-                    echo "</table>";
+        ?>
+                    </form>
+                    </table>
+                    <input type="button" value="Zurück" onclick="window.location.href='diary_overview.php'">
+                    <input type="submit" value="Tagebucheintrag bearbeiten">
+                    <input type="submit" value="Löschen">
+        <?php
             }
                 unset($sql);
-                db_close();
+                db_close(); 
+
     }
 
 
