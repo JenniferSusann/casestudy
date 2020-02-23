@@ -4,6 +4,7 @@ session_start();
 require_once('./funktionen.php');
 
 //voruebergehend
+kat_ermitteln();
 var_dump($_SESSION);
 
 //Session gestartet
@@ -40,10 +41,10 @@ if (!isset($_SESSION['session_on'])) {
                         <li><p>Suche Einträge zwischen dem <input type="date" name="create_date" value="<?php echo date('Y-m-d', strtotime('-1 week')); ?>"> <!--aktuelles Datum minus 1 Woche--> 
                         und dem <input type="date" name="create_date" value="<?php echo date('Y-m-d'); ?>"></p></li> <!--aktuelles Datum-->
 
+                        <?php kat_dropdown(); ?>
+
                         <li><p>Kategorie:
-                            <select name="kat_filter">
-                                <?php kat_auswahl(); ?>
-                            </select>
+                            <input list="kategorien" name="kat_filter" placeholder="Kategorie wählen">
                         </p></li>
                         <input type="submit" name="filter" value="Nach Einträgen suchen">
                         <input type="reset" value="Filter reseten"/>

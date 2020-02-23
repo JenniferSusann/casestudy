@@ -6,7 +6,7 @@ require_once('./funktionen.php');
     //Inputfeld ausgefuellt
     if (!empty($_POST['diary_text'])) {
         //leere Eingabefelder unset
-        $kat_form = array('kat1', 'kat2', 'kat3', 'kat_input1', 'kat_input2', 'kat_input3');
+        $kat_form = array('kat1', 'kat2', 'kat3');
         foreach ($kat_form as $value) {
             if ($_POST["$value"] == '') {
                 unset($_POST["$value"]);
@@ -14,13 +14,6 @@ require_once('./funktionen.php');
         }
 
         //Nur Auswahl oder Dropdown gewaehlt
-        if (                   
-            //Nicht (a und b) (NAND)
-            //Nicht Drop und Eingabe ausgefauellt
-            !(isset($_POST['kat1']) and isset($_POST['kat_input1'])) and 
-            !(isset($_POST['kat2']) and isset($_POST['kat_input2'])) and
-            !(isset($_POST['kat3']) and isset($_POST['kat_input3']))            
-        ) {
                                     
             //daten einfügen
             $create_date = $_POST['create_date'];
@@ -30,11 +23,8 @@ require_once('./funktionen.php');
 
             //Beschreiben der Var mit den Kat
             if (isset($_POST['kat1'])) $kat1 = $_POST['kat1'];
-            if (isset($_POST['kat_input1'])) $kat1 = $_POST['kat_input1'];
             if (isset($_POST['kat2'])) $kat2 = $_POST['kat2'];
-            if (isset($_POST['kat_input2'])) $kat2 = $_POST['kat_input2'];
             if (isset($_POST['kat3'])) $kat3 = $_POST['kat3'];
-            if (isset($_POST['kat_input3'])) $kat3 = $_POST['kat_input3'];
             $diary_text = $_POST['diary_text'];
             $userID = $_SESSION['userID'];
 
@@ -115,11 +105,7 @@ require_once('./funktionen.php');
             else {
                 header ('Location: ./diary_create.php?error_kat=true'); //input oder dropdown mehrmals gewaehlt
             }
-    }
-
-    else {
-        header ('Location: ./diary_create.php?error_kat=true'); //input und dorpdown für Kat
-    }
+    
                 
     }
     else {

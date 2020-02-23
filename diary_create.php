@@ -61,24 +61,20 @@ else {
                     Die Kategorien werden dann auch in die DB geschrieben, es gibt Kat fuer alle und Benutzerdefinierte, loeschen kann man diese nicht, 
                     sondern muss den Eintrag Kat anpassen uns somit ist die Kat dann weg.-->
 
+                    <?php kat_dropdown(); ?>
+
                     <li><p>Kategorien 1:
-                        <select name="kat1">
-                            <?php kat_auswahl(); ?>
-                        </select>
-                        <input type="text" name="kat_input1" value="" placeholder="Freie Eingabe">
+                        <input list="kategorien" name="kat1" placeholder="Kategorie wählen">
                     </p></li>
+
                     <li><p>Kategorien 2:
-                        <select name="kat2">
-                            <?php kat_auswahl(); ?>
-                        </select>
-                        <input type="text" name="kat_input2" value="" placeholder="Freie Eingabe">
+                        <input list="kategorien" name="kat2" placeholder="Kategorie wählen">
                     </p></li>
+                    
                     <li><p>Kategorien 3:
-                        <select name="kat3">
-                            <?php kat_auswahl(); ?>
-                        </select>
-                        <input type="text" name="kat_input3" value="" placeholder="Freie Eingabe">
+                        <input list="kategorien" name="kat3" placeholder="Kategorie wählen">
                     </p></li>
+
                     <textarea name="diary_text" cols="50" rows="10" maxlength="1500" placeholder="Bitte hier Ihren Tagebucheintrag erfassen..."></textarea>
                     <p>Datei wählen: <input type="file" name="myfile"><br></p>
                 

@@ -19,7 +19,6 @@ require_once('./funktionen.php');
 
         if ($BN == $db_bn_name && $PW == $db_bn_pw) { //BN und PW stimmen ueberein
                 $_SESSION['userID'] = $db_bnID;
-                kat_ermitteln();
                 $_SESSION['date_today'] = date('Y-m-d');
                 $_SESSION['session_on'] = True;
             header ( 'Location: ./diary_overview.php');
