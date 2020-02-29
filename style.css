@@ -1,60 +1,188 @@
-body {
-    background-image: url('bilder/cork-board.png');
-    /* background-color: rgb(95, 104, 101); */
-    background-repeat: repeat;    
+body{
+    margin: 0px;
 }
 
-@font-face {
-    font-family: baroneystextures;
-    src: url(BaroneysTextured.ttf);
-}
-
-.fulldiary {
-    font-family: baroneystextures;
+header {
+    padding: 60px;
     text-align: center;
-    font-size: 3em;
+    background-color: aqua;
+    font-size: x-large;
+    color: black;
+    height: 99px;
+    margin-top: -50px;
 }
 
-.willkommen{
-    color: rgb(63, 41, 7);
+footer {
+    text-align: center;
+    background-color: aqua;
+    font-size: x-large;
+    color: black;
+    margin-bottom: -300px;
 }
-.first_text {
-    color: rgb(61, 56, 52);
+
+img#ibzlogo { 
+    width: 150px;
+    height: 150px;
+    float: left;
 }
-  
-.input_form{
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+h3 {
+    text-align: center;
+    font-family: cursive;
     
+}
+
+h5{
     text-align: center;
-    font-family: arial;
-    font-size: 1.5em;
+}
+.input_form{
+    text-align: center;
 }
 
-.input_form ul{
-    list-style: none;
-    font-size: 0.8em;
+.empty-box{
+    border: solid 20px;
+    border-color: rgb(83, 65, 65);
+    
+}
+.leerbox{
+    border: solid 100px;
+    border-color: white;
 }
 
-.input_form p{
-    font-family: arial;
-    font-size: 0.4em;
+
+input[type=submit], input[type=reset]{
+    background-color: lightcoral;
+    border: none;
+    padding: 10px 15px;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 15px;    
 }
 
-.table{
-    font-family: arial;
-    font-size: 0.5em;
-}
-
-a:visited {
-    color: rgb(61, 56, 52);
-}
-a:hover {
-    color: rgb(174, 162, 240);
-}
-
-.error{
-    color:red;
-    font-size: 0.7em /*!important*/;
-    font-family: Arial;
+input[type=text]{
+    border-style: inset;
+    padding: 10px 15px;
+    margin-bottom: 5px;
 
 }
 
+input[type=password]{
+    border-style: inset;
+    padding: 10px 15px;
+
+}
+
+a:visited{
+    color: rgb(88, 29, 136);
+}
+
+a:hover{
+    color: cornflowerblue;
+}
+
+#sydney {
+    width: 500px;
+    height: inherit;
+    margin-left: 50px;
+}
+#london {
+    width: 500px;
+    height: inherit;
+    margin-right: 50px;
+    float: right;
+}
+
+.form-group{
+    text-align: center;
+}
+p{
+    text-align: center;
+}
+
+.form-control{
+    margin-top: 10px;
+    float: unset;
+}
+
+.insitebutton{
+    text-align: left;
+}
+
+#text{
+    width: 25%;
+    min-height: 100x;
+
+    text-align: center;
+}
+
+#eintrag{
+    width: 50%;
+    max-height: 100px;
+    text-align: center;
+    margin-top: 10px;
+}
+textarea{
+    text-align: center;
+    resize: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+.kategorie{
+    width: 15%;
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    margin-left: 820px;
+}
+.date{
+    margin-top: 10px;
+}
+
+.speicherbutton{
+    text-align: center;
+}
+.date,.bildeinfügen{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.form-group{
+    text-align: left;
+    margin-left: 10px;
+}
+.form-group2,.form-group3{
+    text-align: center;
+}
+.filter-text{
+    text-align: center;
+}
+.filter{
+    text-align: center;
+}
+p.keine_Einträge{
+    font-size: 30px;
+}
+.filter{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.eintrag-anzeige{
+    text-align: left;
+    
+    width: auto;
+    padding: 20px;
+    background-color: #ebb;
+    -moz-box-sizing: border-box;
+}

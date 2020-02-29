@@ -1,68 +1,148 @@
 <?php
-session_start(); 
-//Include anderer Files
-require_once('./funktionen.php');
+// Include config file
+require_once "config.php";
+ 
+// Define variables and initialize with empty values
+$username = $password = $confirm_password = "";
+$username_err = $password_err = $confirm_password_err = "";
+ 
+// Processing form data when form is submitted
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+ 
+    // Validate username
+    if(empty(trim($_POST["username"]))){
+        $username_err = "Benutzername eingeben.";
+    } else{
+        // Prepare a select statement
+        $sql = "SELECT id FROM users WHERE username = ?";
+        
+        if($stmt = mysqli_prepare($link, $sql)){
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "s", $param_username);
+            
+            // Set parameters
+            $param_username = trim($_POST["username"]);
+            
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)){
+                /* store result */
+                mysqli_stmt_store_result($stmt);
+                
+                if(mysqli_stmt_num_rows($stmt) == 1){
+                    $username_err = "Benutzername breits vergeben";
+                } else{
+                    $username = trim($_POST["username"]);
+                }
+            } else{
+                echo "Irgendwas ist schiefgelaufen. Probier es bitte später nochmal.";
+            }
 
-if (isset($_GET['error_blank'])) //nicht alle Felder ausgefuellt
-{
-    $error_text = '<h1 class="error">Bitte alle Pflichfelder ausfüllen!</h1>';
-    unset ($error_blank);
-}
+            // Close statement
+            mysqli_stmt_close($stmt);
+        }
+    }
+    
+    // Validate password
+    if(empty(trim($_POST["password"]))){
+        $password_err = "Passwort eingeben";     
+    } elseif(strlen(trim($_POST["password"])) < 6){
+        $password_err = "Passwort muss mindesten 6 Zeichen haben";
+    } else{
+        $password = trim($_POST["password"]);
+    }
+    
+    // Validate confirm password
+    if(empty(trim($_POST["confirm_password"]))){
+        $confirm_password_err = "Passwort bestätigen";     
+    } else{
+        $confirm_password = trim($_POST["confirm_password"]);
+        if(empty($password_err) && ($password != $confirm_password)){
+            $confirm_password_err = "Passwörter stimmen nicht überein";
+        }
+    }
+    
+    // Check input errors before inserting in database
+    if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
+        
+        // Prepare an insert statement
+        $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+         
+        if($stmt = mysqli_prepare($link, $sql)){
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
+            
+            // Set parameters
+            $param_username = $username;
+            $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+            
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)){
+                // Redirect to login page
+                header("location: mainpage.php");
+            } else{
+                echo "Irgendwas ist schiefgelaufen. Probier es bitte später nochmal.";
+            }
 
-elseif (isset($_GET['error_pw_same'])) //PW nicht identisch
-{
-    $error_text = '<h1 class="error">Die eingegebenen Passwörter stimmen nicht überrein!</h1>';
-    unset ($error_pw_same);
-}
-
-elseif (isset($_GET['error_email_same'])) //PW nicht identisch
-{
-    $error_text = '<h1 class="error">Die eingegebenen E-Mail Adressen stimmen nicht überrein!</h1>';
-    unset ($error_pw_same);
-}
-
-elseif (isset($_GET['error_bn_double'])) //Benutzer ist bereits vorhanden
-{
-    $error_text = '<h1 class="error">Der eingegebene Benutzername wird bereits verwendet!</h1>';
-    unset ($error_bn_double);
-}
-
-else {
-    $error_text = "";
+            // Close statement
+            mysqli_stmt_close($stmt);
+        }
+    }
+    
+    // Close connection
+    mysqli_close($link);
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="de">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width", inital-scale=1.0">
-        <link rel="stylesheet" href="style.css">      
-        <link rel="shortcut icon" href="./bilder/favicon.ico">
-        <title>Registrierung für Tagebuch</title>
-    </head>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width", inital-scale=1.0>
+    <link rel="stylesheet" href="style.css">
+    <title> Tagebuch </title>
 
-    <body>
-    <div class="fulldiary">
-    <h2>Registration</h2>
-    <div class="error"><?=$error_text?></div>
-    <div class="input_form">
-        <form action="register_action.php" method="post"> 
-        <ul>
-            <li><input type="text" name="vorname" value="" placeholder="Vorname*"></li>
-            <li><input type="text" name="nachname" value="" placeholder="Nachname*"> </li>
-            <li><input type="date" name="geburtsdatum" value=""></li>
-            <li><input type="text" name="benutzername" value="" placeholder="Benutzername*"></li>
-            <li><input type="email" name="email" value="" placeholder="E-Mail"></li>
-            <li><input type="email" name="email_confirm" value="" placeholder="E-Mail bestätigen"></li>
-            <li><input type="password" name="password" placeholder="Passwort*"></li>
-            <li><input type="password" name="password_confirm" placeholder="Passwort bestätigen*"></li>
-        
-            <input type="submit" value="Registrieren">
-            <!-- <input type="reset" value="Reset"/> -->
-            <input type="button" value="Abbrechen" onclick="window.location.href='login.php'">
-        </ul>        
+</head>
+
+<body>
+    <header>
+        <img id="ibzlogo" src="bilder/ibzlogo.png" alt="Logo">
+        <h1> Registrieren </h1>
+    </header>
+    <div class=empty-box>
+
     </div>
-    </div>
-    </body>
+        <p> Damit du Einträge erstellen kannst, benötigst du ein eigenes Konto. <br>
+            Bitte Registriere dich hier:
+        <p>
+
+        <form action= "" method="post">
+            <div class="form-group3 <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+                <input type="text" name="username" class="form-control" value="<?php echo $username; ?>" placeholder="Benutzername">
+                <span class="help-block"><?php echo $username_err; ?> </span>
+            </div>
+            
+            <div class="form-group3 <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+                <input type="password" name="password" class="form-control" value="<?php echo $password; ?>" placeholder="Passwort">
+                <span class="help-block"><?php echo $password_err; ?></span>
+            </div>
+            <div class="form-group3 <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
+                <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>" placeholder="Passwort bestätigen">
+                <span class="help-block"><?php echo $confirm_password_err; ?></span>
+            </div>
+            <div class="form-group3">
+                <input type="submit" class="btn btn-primary" value="Registrieren">
+                <input type="reset" class="btn btn-default" value="zurücksetzen">
+            </div>
+            <h2>   
+        <a href="mainpage.php">Zurück zum Anmelden
+        </a>
+        </h2>
+
+    <img id="sydney" src="bilder/sydney.jpg" alt="cooles Bild">
+    <img id="london" src="bilder/london.jpg" alt="juuppi Bild">
+
+    <footer>
+    <h4> Erstellt von Cyril Koller und Jennifer Mentner </h4>
+    </footer>
+</body>
 </html>
